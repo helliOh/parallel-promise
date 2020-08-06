@@ -2,55 +2,55 @@
 ---
 Enfast asynchronous job, especially API call.
 
-### ACTION
+## ACTION
 ---
 
-#### FastPromise(object)
+### FastPromise(object)
 
-1. ##### FastPromise(object)
+1. #### FastPromise(object)
 New buffer with given windowSize(default : 100)
 
-2. ##### FastPromise.load(Function)
+2. #### FastPromise.load(Function)
 Load new payload to instance
 
-3. ##### FasetPromise.run()
+3. #### FasetPromise.run()
 Run all jobs, job will be executed with chunk size.
 
 Set windowSize to prevent being blocked by API server when using HTTP request.
 Make sure that QPS(Quota per second) don't exceed the host server.
 
-#### FastPromiseStream(object)
+### FastPromiseStream(object)
 
-1. ##### FastPromiseStream(object)
+1. #### FastPromiseStream(object)
 New buffer with given windowSize(default : 100)
 
-2. ##### FastPromiseStream.load(Function)
+2. #### FastPromiseStream.load(Function)
 Load new payload to instance
 
-3. ##### FasetPromiseStream.run()
+3. #### FasetPromiseStream.run()
 Run all jobs, job will be executed with chunk size.
 
 Set windowSize to prevent being blocked by API server when using HTTP request.
 Make sure that QPS(Quota per second) don't exceed the host server.
 
-#### FastPromiseStream :: Event
-1. ##### FastPromiseStream.on('error') 
+### FastPromiseStream :: Event
+1. #### FastPromiseStream.on('error') 
 Error event
 
-2. ##### FastPromiseStream.on('resolve')
+2. #### FastPromiseStream.on('resolve')
 Window resolve event
 
-3. ##### FastPromiseStream.on('done')
+3. #### FastPromiseStream.on('done')
 All Job done event
 
-### USAGE
+## USAGE
 ---
 
-#### FastPromise
+### FastPromise
 ```js
 const axios = require('axios');
 
-const { FastPromise } = require('./lib/fast-promise');
+const { FastPromise } = require('./lib');
 
 async function fetcher(){
     return new Promise(async (resolve, reject) =>{
@@ -78,11 +78,11 @@ async function fetcher(){
 })()
 ```
 
-#### FastPromiseStream
+### FastPromiseStream
 ```js
 const axios = require('axios');
 
-const { FastPromise } = require('./lib/fast-promise');
+const { FastPromiseStream } = require('./lib');
 
 async function fetcher(){
     return new Promise(async (resolve, reject) =>{
@@ -119,7 +119,7 @@ async function fetcher(){
 })()
 ```
 
-### OPTIONS
+## OPTIONS
 ---
 ```js
 new FastPromise(options = {
