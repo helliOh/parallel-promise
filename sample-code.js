@@ -1,7 +1,7 @@
 const axios = require('axios');
 const qs = require('qs');
 
-const { FastPromise } = require('./lib/fast-promise');
+const { FastPromise, FastPromiseStream } = require('./lib');
 
 async function fetcher(){
     return new Promise(async (resolve, reject) =>{
@@ -19,11 +19,28 @@ async function fetcher(){
 }
 
 (async () =>{
-    const jobs = new FastPromise({ windowSize : 1000 });
+    const jobs = new FastPromise({ windowSize : 500 });
 
     for(let i=0; i<2000; i++) jobs.load(() => fetcher());
 
     const ret = await jobs.run();
     console.log(ret);
     console.log(ret.pop());
+
+    const promiseStream = new FastPromiseStream({ windowSize : 100, windowInterval : 100 });
+
+    for(let i=0; i<2000; i++) promiseStream.load(() => fetcher());
+
+    promiseStream
+    .on('resolve', (data) =>{
+        console.log(data);
+    })
+    .on('error', (e) =>{
+        console.error(e);
+    })
+    .on('done', (code) =>{
+        console.log('done');
+    })
+
+    promiseStream.run();
 })()
