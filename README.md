@@ -1,47 +1,51 @@
 ### PURPOSE
 ---
-Enfast asynchronous job, especially API call.
+Enfasting asynchronous job, especially API call.
 
 ## ACTION
 ---
 
-### FastPromise(object)
+```js
+let fp = new AnyFastPromise(options)
 
-1. #### FastPromise(object)
-New buffer with given windowSize(default : 100)
+/*
+    New buffer with given windowSize(default : 100)
+*/
+```
 
-2. #### FastPromise.load(Function)
-Load new payload to instance
 
-3. #### FasetPromise.run()
-Run all jobs, job will be executed with chunk size.
+```js
+AnyFastPromise.load(Function)
 
-Set windowSize to prevent being blocked by API server when using HTTP request.
-Make sure that QPS(Quota per second) don't exceed the host server.
+/*
+    Load new payload to instance
+*/
+```
 
-### FastPromiseStream(object)
 
-1. #### FastPromiseStream(object)
-New buffer with given windowSize(default : 100)
+```js
+AnyFastPromise.run()
 
-2. #### FastPromiseStream.load(Function)
-Load new payload to instance
+/*
+    Run all jobs, job will be executed with chunk size.
 
-3. #### FasetPromiseStream.run()
-Run all jobs, job will be executed with chunk size.
-
-Set windowSize to prevent being blocked by API server when using HTTP request.
-Make sure that QPS(Quota per second) don't exceed the host server.
+    Set windowSize to prevent being blocked by API server when using HTTP request.
+    Make sure that QPS(Quota per second) don't exceed the host server.
+*/
+```
 
 ### FastPromiseStream :: Event
-1. #### FastPromiseStream.on('error') 
-Error event
+```js
+FastPromiseStream.on('error')//emits when error occurs
+```
 
-2. #### FastPromiseStream.on('resolve')
-Window resolve event
+```js
+FastPromiseStream.on('resolve')//emits when window be resolved
+```
 
-3. #### FastPromiseStream.on('done')
-All Job done event
+```js
+FastPromiseStream.on('done')//emits when events ends
+```
 
 ## USAGE
 ---
