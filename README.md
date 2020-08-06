@@ -36,8 +36,10 @@ Make sure that QPS(Quota per second) don't exceed the host server.
 #### FastPromiseStream :: Event
 1. ##### FastPromiseStream.on('error') 
 Error event
+
 2. ##### FastPromiseStream.on('resolve')
 Window resolve event
+
 3. ##### FastPromiseStream.on('done')
 All Job done event
 
