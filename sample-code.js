@@ -19,28 +19,37 @@ async function fetcher(){
 }
 
 (async () =>{
-    const jobs = new FastPromise({ windowSize : 500 });
+    // const jobs = new FastPromise({ windowSize : 500, windowInterval : 1000 });
 
-    for(let i=0; i<2000; i++) jobs.load(() => fetcher());
+    // for(let i=0; i<2000; i++) jobs.load(() => fetcher());
+
+    // const ret = await jobs.run();
+    // console.log(ret);
+    // console.log(ret.pop());
+
+    const asyncFunctionArray = [];
+    for(let i=0; i<2000; i++) asyncFunctionArray.push(fetcher);
+
+    const jobs = new FastPromise({ windowSize : 500, windowInterval : 1000 });
+    jobs.load(asyncFunctionArray);
 
     const ret = await jobs.run();
     console.log(ret);
-    console.log(ret.pop());
 
-    const promiseStream = new FastPromiseStream({ windowSize : 100, windowInterval : 100 });
+    // const promiseStream = new FastPromiseStream({ windowSize : 100, windowInterval : 100 });
 
-    for(let i=0; i<2000; i++) promiseStream.load(() => fetcher());
+    // for(let i=0; i<2000; i++) promiseStream.load(() => fetcher());
 
-    promiseStream
-    .on('resolve', (data) =>{
-        console.log(data);
-    })
-    .on('error', (e) =>{
-        console.error(e);
-    })
-    .on('done', (code) =>{
-        console.log('done');
-    })
+    // promiseStream
+    // .on('resolve', (data) =>{
+    //     console.log(data);
+    // })
+    // .on('error', (e) =>{
+    //     console.error(e);
+    // })
+    // .on('done', (code) =>{
+    //     console.log('done');
+    // })
 
-    promiseStream.run();
+    // promiseStream.run();
 })()
